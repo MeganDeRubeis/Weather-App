@@ -28,7 +28,7 @@ p {
 }
 li {
   list-style-type: none;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .search-button {
@@ -46,6 +46,7 @@ li {
   background-color: #728a96;
 }
 .location-button {
+  color: white;
   display: block;
   background-color: green;
   border-radius: 2px;
