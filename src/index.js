@@ -97,3 +97,9 @@ function getCurrentPosition(event) {
 
 let button = document.querySelector(".location-button");
 button.addEventListener("click", getCurrentPosition);
+
+// Add weather icon
+
+let iconElement = document.querySelector("#icon");
+
+iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
