@@ -56,16 +56,18 @@ li {
 .search-box {
   margin: 3px;
   padding: 5px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .container {
   display: block;
-  border: 5px solid;
-  max-width: 735px;
+  border: 3px solid;
+  max-width: 600px;
   border-color: black;
   margin-top: 25px;
   margin-bottom: 20px;
+  border-radius: 25px;
+  padding-left: 20px;
 }
 
 footer {
