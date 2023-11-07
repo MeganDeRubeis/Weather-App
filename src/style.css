@@ -1,10 +1,11 @@
 header {
-  display: block;
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 75px;
   color: #2c96e2;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
   background: linear-gradient(-225deg, #5d9fff 0%, #b8dcff 48%, #6bbbff 100%);
   background-repeat: no-repeat;
   margin-bottom: 100px;
-  margin-top: 100px;
+  margin-top: 0px;
 }
 
 h1 {
