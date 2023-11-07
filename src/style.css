@@ -41,7 +41,6 @@ li {
 }
 .location-button {
   color: white;
-  display: block;
   background-color: green;
   border-radius: 2px;
   cursor: pointer;
