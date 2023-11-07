@@ -69,6 +69,8 @@ form.addEventListener("submit", handleSubmit);
 function searchCity(city) {}
 
 function displayWeatherConditions(response) {
+  let heading = document.querySelector("h1");
+  heading.innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${temperature}°C`;
@@ -78,9 +80,16 @@ function displayWeatherConditions(response) {
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+
+  let iconElement = document.querySelector(".weather-app-icon");
+
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
-searchCity("Denton");
+search("Denton");
 
 //bonus
 
@@ -99,7 +108,3 @@ let button = document.querySelector(".location-button");
 button.addEventListener("click", getCurrentPosition);
 
 // Add weather icon
-
-let iconElement = document.querySelector("#icon");
-
-iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
