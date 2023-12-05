@@ -1,4 +1,4 @@
-// Week 4 Wireframe to HTML/CSS
+//
 function todaysDate() {
   let currentTime = new Date();
   let hours = currentTime.getHours();
@@ -64,7 +64,7 @@ searchCity(city);
 let form = document.querySelector("#searchForm");
 form.addEventListener("submit", handleSubmit);
 
-// Week 5 Search Engine
+//
 
 function searchCity(city) {}
 
@@ -91,7 +91,7 @@ function displayWeatherConditions(response) {
 
 search("Denton");
 
-//bonus
+//
 
 function searchLocation(position) {
   let apiKey = "e9fa3919fc5edf9342028b77dc81f90d";
@@ -106,12 +106,12 @@ function getCurrentPosition(event) {
 
 let button = document.querySelector(".location-button");
 button.addEventListener("click", getCurrentPosition);
-////
+//
 
 function getForecast(city) {
   let apiKey = "e9fa3919fc5edf9342028b77dc81f90d";
   let apiUrl =
-    "https://api.shecodes.io/weather/v1/forecast?query={city}&key=${apikey}&units=metric";
+    "https://api.openweathermap.org/data/2.5/forecast/daily?lat=44.34&lon=10.99&cnt=7&appid={API key}";
   axios(apiUrl).then(displayForecast);
   console.log(apiUrl);
 }
