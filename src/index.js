@@ -108,7 +108,16 @@ let button = document.querySelector(".location-button");
 button.addEventListener("click", getCurrentPosition);
 ////
 
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "e9fa3919fc5edf9342028b77dc81f90d";
+  let apiUrl =
+    "https://api.shecodes.io/weather/v1/forecast?query={city}&key=${apikey}&units=metric";
+  axios(apiUrl).then(displayForecast);
+  console.log(apiUrl);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
   let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   let forecastHtml = "";
 
@@ -131,4 +140,4 @@ function displayForecast() {
   forecast.innerHTML = forecastHtml;
 }
 
-displayForecast();
+getForecast("Denton");
