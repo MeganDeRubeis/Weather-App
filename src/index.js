@@ -113,7 +113,7 @@ function displayForecast() {
   let forecastHtml = "";
 
   days.forEach(function (day) {
-    forecast.innerHTML =
+    forecastHtml =
       forecastHtml +
       `
 <div class="weekly-forecast-day">
@@ -127,8 +127,8 @@ function displayForecast() {
         </div>
 `;
   });
-  let forecast = document.querySelector("#forecast");
-  forecastElement.innerHtml = forecastHtml;
+
+  forecast.innerHTML = forecastHtml;
 }
 
 displayForecast();
