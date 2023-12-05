@@ -106,5 +106,29 @@ function getCurrentPosition(event) {
 
 let button = document.querySelector(".location-button");
 button.addEventListener("click", getCurrentPosition);
+////
 
-// Add weather icon
+function displayForecast() {
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecast.innerHTML =
+      forecastHtml +
+      `
+<div class="weekly-forecast-day">
+            <div class="weekly-forecast-date"> ${day}</div>
+          <div class="weekly-forecast-icon"> 🌞</div>
+            <div class="weekly-forecast-temperature">
+              <span class="weekly-forecast-temperature-max"> 18° </span>
+              <span class="weekly-forecast-temperature-min"> 12° </span>
+            </div>
+          </div>
+        </div>
+`;
+  });
+  let forecast = document.querySelector("#forecast");
+  forecastElement.innerHtml = forecastHtml;
+}
+
+displayForecast();
