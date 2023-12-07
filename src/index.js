@@ -118,19 +118,26 @@ function getForecast(coordinates) {
 
 function displayForecast(response) {
   console.log(response.data);
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   let forecastHtml = "";
 
-  days.forEach(function (day) {
+  response.data.daily.forEach(function (day) {
     forecastHtml =
       forecastHtml +
       `
 <div class="weekly-forecast-day">
-            <div class="weekly-forecast-date"> ${day}</div>
-          <div class="weekly-forecast-icon"> 🌞</div>
+            <div class="weekly-forecast-date"> Tuesday </div>
+          <div class="weekly-forecast-icon"> 
+          <img src= "${
+            day.condition.icon_url
+          }" class = "weather-forecast-icon" />
+          </div>
             <div class="weekly-forecast-temperature">
-              <span class="weekly-forecast-temperature-max"> 18° </span>
-              <span class="weekly-forecast-temperature-min"> 12° </span>
+              <span class="weekly-forecast-temperature-max"> ${Math.round(
+                day.temperature.maximum
+              )} ° </span>
+              <span class="weekly-forecast-temperature-min">${Math.round(
+                day.temperature.minimum
+              )} ° </span>
             </div>
           </div>
         </div>

@@ -123,3 +123,7 @@ footer {
 .weekly-forecast-temperature-min {
   opacity: 0.4;
 }
+
+.weather-forecast-icon {
+  width: 50px;
+}
