@@ -54,8 +54,8 @@ function handleSubmit(event) {
 }
 
 function search(city) {
-  let apiKey = "e9fa3919fc5edf9342028b77dc81f90d";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "t760b4d120976d8c733c3b90a42oe02f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherConditions);
 }
 
@@ -95,8 +95,8 @@ search("Denton");
 //
 
 function searchLocation(position) {
-  let apiKey = "96771e971243152d6b8948878c26adde";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiKey = "t760b4d120976d8c733c3b90a42oe02f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon={lon}&lat={lat}&key={key}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -110,8 +110,8 @@ button.addEventListener("click", getCurrentPosition);
 //
 
 function getForecast(coordinates) {
-  let apiKey = "96771e971243152d6b8948878c26adde";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&cnt=7&appid=${apiKey}`;
+  let apiKey = "t760b4d120976d8c733c3b90a42oe02f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon={lon}&lat={lat}&key={key}`;
   axios(apiUrl).then(displayForecast);
   console.log(apiUrl);
 }
