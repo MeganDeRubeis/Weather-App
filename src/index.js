@@ -70,24 +70,22 @@ function searchCity(city) {}
 
 function displayWeatherConditions(response) {
   let heading = document.querySelector("h1");
-  heading.innerHTML = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
+  heading.innerHTML = response.data.city;
+  let temperature = Math.round(response.data.temperature.current);
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${temperature}°C`;
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#humidity").innerHTML =
+    response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
   );
   document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+    response.data.condition.description;
 
   let iconElement = document.querySelector(".weather-app-icon");
 
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  getForecast(response.data.coord);
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  getForecast(response.data.coordinates);
 }
 
 search("Denton");
@@ -95,9 +93,12 @@ search("Denton");
 //
 
 function searchLocation(position) {
+  console.log(position);
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
   let apiKey = "t760b4d120976d8c733c3b90a42oe02f";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon={lon}&lat={lat}&key={key}`;
-  axios.get(apiUrl).then(displayWeatherCondition);
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}`;
+  axios.get(apiUrl).then(displayWeatherConditions);
 }
 
 function getCurrentPosition(event) {
@@ -110,38 +111,50 @@ button.addEventListener("click", getCurrentPosition);
 //
 
 function getForecast(coordinates) {
+  console.log(coordinates);
+  let lat = coordinates.latitude;
+  let lon = coordinates.longitude;
   let apiKey = "t760b4d120976d8c733c3b90a42oe02f";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon={lon}&lat={lat}&key={key}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}`;
   axios(apiUrl).then(displayForecast);
   console.log(apiUrl);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
 }
 
 function displayForecast(response) {
   console.log(response.data);
   let forecastHtml = "";
 
-  response.data.daily.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-<div class="weekly-forecast-day">
-            <div class="weekly-forecast-date"> Tuesday </div>
-          <div class="weekly-forecast-icon"> 
-          <img src= "${
-            day.condition.icon_url
-          }" class = "weather-forecast-icon" />
-          </div>
-            <div class="weekly-forecast-temperature">
-              <span class="weekly-forecast-temperature-max"> ${Math.round(
-                day.temperature.maximum
-              )} ° </span>
-              <span class="weekly-forecast-temperature-min">${Math.round(
-                day.temperature.minimum
-              )} ° </span>
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
+  <div class="weekly-forecast-day">
+              <div class="weekly-forecast-date">${formatDay(day.time)}</div>
+            <div class="weekly-forecast-icon"> 
+            <img src= "${
+              day.condition.icon_url
+            }" class = "weather-forecast-icon" />
+            </div>
+              <div class="weekly-forecast-temperature">
+                <span class="weekly-forecast-temperature-max"> ${Math.round(
+                  day.temperature.maximum
+                )} ° </span>
+                <span class="weekly-forecast-temperature-min">${Math.round(
+                  day.temperature.minimum
+                )} ° </span>
+              </div>
             </div>
           </div>
-        </div>
-`;
+  `;
+    }
   });
 
   forecast.innerHTML = forecastHtml;
